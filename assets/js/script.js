@@ -31,7 +31,7 @@ jam.innerHTML = `${hour}:${minutes}`;
 // Dirubah 
 const pengirim = "Tamaa";
 const nomorWa = "6285156581907"; // awalan nomor 0 harus di awalin 62
-const textWa = "Hi tam, aku sudah bukaa";
+const textWa = "Hi tam, aku sudah bacaa";
 const pesan = `Happy birthday sass, wish you all the best`;
 
 // Initialize attempt counter
