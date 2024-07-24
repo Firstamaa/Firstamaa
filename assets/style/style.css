@@ -8,7 +8,68 @@ body {
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
+}
 
+/* Style untuk slideshow */
+.slide-foto {
+  position: relative;
+  max-width: 800px; /* Atur sesuai kebutuhan */
+  margin: auto;
+  text-align: center;
+}
+
+.slide-foto-item {
+  display: none;
+}
+
+.slide-foto img {
+  width: 100%;
+  border-radius: 10px; /* Opsional: menambahkan border-radius */
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Tambahan CSS untuk efek fade di slideshow */
+.fade {
+  animation: fade 1.5s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0.4 }
+  to { opacity: 1 }
+}
+
+/* Menyesuaikan posisi tombol navigasi pada slideshow */
+.slide-foto {
+  position: relative;
+}
+
+.prev, .next {
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 #waktu h1 {
@@ -128,7 +189,7 @@ body {
   }
 
   100% {
-    transform: translateY(10);
+    transform: translateY(10px);
   }
 }
 
@@ -184,4 +245,17 @@ body {
   .body {
     width: 470px;
   }
+}
+
+.message-image-border {
+  border: 5px solid #ffffff; /* Ganti dengan warna dan ketebalan border yang diinginkan */
+}
+
+/* Style untuk gambar pengganti pesan */
+#messageImage {
+  display: none; /* Gambar tersembunyi secara default */
+  width: 50%; /* Atur lebar gambar sesuai kebutuhan */
+  max-width: 200px; /* Sesuaikan ukuran maksimal gambar */
+  height: auto; /* Menjaga rasio aspek gambar */
+  margin: 1rem auto; /* Pusatkan gambar dengan jarak atas dan bawah */
 }

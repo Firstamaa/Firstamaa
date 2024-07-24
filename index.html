@@ -8,14 +8,16 @@
   <title>Document</title>
 </head>
 <body>
-  <audio class="audio" src="/assets/audio/Sezairi - It's You.mp3" autoplay type="audio"
-    loop=""></audio>
+  <audio id="backgroundAudio" src="/assets/audio/Sezairi - It's You.mp3" loop type="audio/mpeg"></audio>
   <div class="body">
     <div id="waktu">
       <h1></h1>
       <p></p>
     </div>
-    
+    <!-- Gambar yang ditampilkan sebagai pengganti pesan -->
+    <img id="messageImage" src="/assets/img/image1.jpg" alt="Message Image" class="message-image-border" style="display:none;" />
+    <img id="messageImage" src="/assets/img/image2.jpg" alt="Message Image" class="message-image-border" style="display:none;" />
+
     <!-- PESAN 1 -->
     <div class="messege-box messege-box1 kelip">
       <div class="notif-wa">
@@ -57,15 +59,40 @@
       </div>
     </div>
 
-
     <div id="button">
-      <button class="goyang mulai">Touch me!!</button>
-      <button class="goyang hilang1" style="display: none;">Open Messages</button>
+      <button id="touchMeButton" class="goyang mulai" onclick="playAudioAndShowImage()">Touch me!!</button>
+      <button id="openMessagesButton" class="goyang hilang1" style="display: none;">Open Messages</button>
       <button class="goyang hilang2" style="display: none;">Reply</button>
     </div>
   </div>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="/assets/js/waktuIndo.js"></script>
   <script src="/assets/js/script.js"></script>
+  <script>
+    function playAudioAndShowImage() {
+      var audio = document.getElementById("backgroundAudio");
+      var messageImage = document.getElementById("messageImage");
+      var messageBoxes = document.getElementsByClassName("messege-box");
+      var touchMeButton = document.getElementById("touchMeButton");
+      var openMessagesButton = document.getElementById("openMessagesButton");
+
+      // Play the audio
+      audio.play();
+
+      // Display the image
+      messageImage.style.display = "block";
+
+      // Hide the message boxes
+      for (var i = 0; i < messageBoxes.length; i++) {
+        messageBoxes[i].style.display = "none";
+      }
+
+      // Hide the "Touch me!!" button
+      touchMeButton.style.display = "none";
+
+      // Show the "Open Messages" button
+      openMessagesButton.style.display = "block";
+    }
+  </script>
 </body>
 </html>

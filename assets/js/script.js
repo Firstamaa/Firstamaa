@@ -13,7 +13,8 @@ const hari = waktu.querySelector('p');
 const bg1 = document.querySelector('.background1');
 const bg2 = document.querySelector('.background2');
 const body = document.querySelector('.body');
-const audio = document.querySelector('.audio');
+const audio = document.getElementById('backgroundAudio');
+const messageImage = document.getElementById('messageImage');
 
 body.classList.add('background1');
 
@@ -28,13 +29,11 @@ const year = date.getFullYear();
 hari.innerHTML = `${dayID()}, ${tgl} ${monthID()} ${year}`;
 jam.innerHTML = `${hour}:${minutes}`;
 
-// Dirubah 
 const pengirim = "Tamaa";
-const nomorWa = "6285156581907"; // awalan nomor 0 harus di awalin 62
-const textWa = "Hi tam, aku sudah bacaa";
-const pesan = `Happy birthday sass, wish you all the best`;
+const nomorWa = "6285156581907";
+const textWa = "Hi tam, meetnya jadi tanggal (ganti tanggalnyaa wkwk) yaa";
+const pesan = `Happy birthday sass, wish you all the best!!!  semoga apa yang di cita"kan segera terwujud, semoga Allah selalu memudahkan jalanmu, melancarkan segala urusanmu aamiin... senang bisa kenal kamu hehe you're awesome <3  Btw km follo aku lagi di ig ko di follback ga diaccept" sii muayaakk huu :(... oiyaa kabarin aku yaa jadi meetnya kapan hehe sehat selalu orang baik! semoga makin berkah...  oiyaa satu lagi maaf ya ini aku buatnya ga bagus wkwkk ❤☺ `;
 
-// Initialize attempt counter
 let attemptCounter = 0;
 
 if (pengirim) {
@@ -47,15 +46,16 @@ if (pengirim) {
 
 btnPlay.addEventListener('click', () => {
   audio.play();
-  messege1.style.display = "block";
-  messege1.style.transform = "translateX(0)";
+  messege1.style.display = "none";
+  messageImage.style.display = "block";
   btnPlay.style.display = "none";
   hilang1.style.display = "block";
 });
 
 hilang1.addEventListener('click', () => {
-  messege1.style.display = "none";
+  messageImage.style.display = "none";
   messege2.style.transform = "translateX(0)";
+  messege2.style.display = "block"; // Pastikan pesan 2 tampil
   hilang1.style.display = "none";
   hilang2.style.display = "block";
   Swal.fire({
@@ -68,11 +68,12 @@ hilang1.addEventListener('click', () => {
     confirmButtonText: 'Kirim',
     focusConfirm: false,
     preConfirm: (password) => {
-      attemptCounter++; // Increment attempt counter
+      attemptCounter++;
       let message = 'yah salah :(';
       if (password === 'Maret' || password === 'maret' || password === 'MARET' || password === 'march' || password === 'March' || password === 'MARCH') {
         body.classList.replace('background1', 'background2');
         body.classList.add('muncul');
+        messege2.style.display = "block"; // Tampilkan messege-box2
         
         let i = 0;
         const speed = 50;
@@ -98,12 +99,12 @@ hilang1.addEventListener('click', () => {
           message = `passwordnya itu bulan pertama kita kenal wkwk`;
         } else if (attemptCounter === 3) {
           message = `netnott... <br> ayo coba diinget lagi ya cantikk hehe <3`;
-        }
-          else if (attemptCounter === 3 ) {
+        } else if (attemptCounter === 4) {
           message = `yahh masih salahh :(`;
-        }
-        else if (attemptCounter > 3 ) {
+        } else if (attemptCounter === 5) {
           message = `hmm masa lupa si huhuu`;
+        } else if (attemptCounter >4) {
+          message = `kalo nyerah tanya aku dehh wkwk`;
         }
         Swal.showValidationMessage(message);
       }
@@ -112,7 +113,8 @@ hilang1.addEventListener('click', () => {
   });
 });
 
+// Fungsi ini akan dipanggil ketika tombol "Reply" diklik
 hilang2.addEventListener('click', () => {
-  audio.pause(); // Menambahkan baris ini untuk menghentikan musik
-  window.open(`https://wa.me/${nomorWa}/?text=${textWa}`, '_blank');
+  audio.pause(); // Menghentikan audio jika sedang diputar
+  window.open(`https://wa.me/${nomorWa}/?text=${encodeURIComponent(textWa)}`, '_blank'); // Membuka WhatsApp dengan teks yang dikirim
 });
